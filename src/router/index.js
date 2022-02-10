@@ -19,6 +19,18 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+  {
+    path: "/moneda",
+    name: "Moneda",
+    component: () =>
+      import(/* webpackChunkName: "moneda" */ "../views/Moneda.vue"),
+  },
+  {
+    path: "/monedas",
+    name: "Monedas",
+    component: () =>
+      import(/* webpackChunkName: "monedas" */ "../views/Monedas.vue"),
+  },
 ];
 
 const router = new VueRouter({
