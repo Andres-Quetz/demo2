@@ -9,6 +9,7 @@ export default new Vuex.Store({
     name: "andres",
     fullName: "",
     monedas: [],
+    totalDeVentas: 0,
     asientosDeTren: [] /*[
       {
         folio: "label",
@@ -46,6 +47,11 @@ export default new Vuex.Store({
           });
         }
       }
+    },
+    registrarVenta(state, registro ){
+      state.asientosDeTren[registro.id].img = 'ocupado.png';
+      state.asientosDeTren[registro.id].nombre = registro.cliente;
+      state.totalDeVentas = state.totalDeVentas + state.asientosDeTren[registro.id].costo;
     },
     setMonedas(state, par1) {
       state.monedas = par1;

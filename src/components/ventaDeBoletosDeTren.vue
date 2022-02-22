@@ -4,8 +4,8 @@
       <h5>Comp... ventas de tren</h5>
     </div>
     <div class="row">
-      <div v-if="showForm">
-        <input type="text" placeholder="nombre" />
+      <div v-if="showForm"> 
+        <input type="text" placeholder="nombre" v-model="cliente" />
         <button @click="guardarDatos()">Guardar</button>
       </div>
     </div>
@@ -39,24 +39,26 @@ export default {
     return {
       showAsientos: true,
       showForm: false,
+      seleccionado:null,
+      cliente: "",
     };
   },
   computed: {
-    ...mapState(["asientosDeTren"]),
+    ...mapState(["asientosDeTren", "totalDeVentas"]),
   },
   methods: {
     guardarDatos() {
-      this.metodoShowAsientos();
-      
+      this.metodoShowAsientos(this.seleccionado);
+      this.registrarVenta({ id: this.seleccionado, cliente: this.cliente});
     },
     metodoShowAsientos(id) {
-      alert(id)
+      this.seleccionado = id
       this.showAsientos
         ? (this.showAsientos = false)
         : (this.showAsientos = true);
       this.showForm ? (this.showForm = false) : (this.showForm = true);
     },
-    ...mapMutations(["iniAsientosDeTren"]),
+    ...mapMutations(["iniAsientosDeTren", "registrarVenta"]),
   },
 };
 </script>
