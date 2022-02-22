@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/moneda">Moneda</router-link> |
       <router-link to="/monedas">Monedas</router-link> |
+      <router-link to="/boletos">Boletos</router-link> |
     </div>
     <router-view />
   </div>

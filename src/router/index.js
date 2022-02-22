@@ -31,6 +31,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "monedas" */ "../views/Monedas.vue"),
   },
+  {
+    path: "/boletos",
+    name: "Boletos",
+    component: () =>
+      import(/* webpackChunkName: "boletos" */ "../views/Boletos.vue"),
+  },
 ];
 
 const router = new VueRouter({
