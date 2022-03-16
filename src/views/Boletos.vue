@@ -5,15 +5,19 @@
       <div class="col">Lado izquierdo</div>
       <div class="col"><ventaDeBoletosDeTren></ventaDeBoletosDeTren></div>
 
-      <div class="col">Lado Derecho
-        <div>{{totalDeVentas}}</div>
+      <div class="col">
+        Lado Derecho
+        <div>
+          <span>Total de ventas : </span>
+          $ {{ totalDeVentas }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {  mapState } from "vuex";
+import { mapState } from "vuex";
 import ventaDeBoletosDeTren from "@/components/ventaDeBoletosDeTren.vue";
 
 export default {

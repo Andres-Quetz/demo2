@@ -4,7 +4,7 @@
       <h5>Comp... ventas de tren</h5>
     </div>
     <div class="row">
-      <div v-if="showForm"> 
+      <div v-if="showForm">
         <input type="text" placeholder="nombre" v-model="cliente" />
         <button @click="guardarDatos()">Guardar</button>
       </div>
@@ -23,6 +23,7 @@
           type="image"
           :src="require('@/assets/asientos/' + asientoDeTren.img)"
         />
+        <span>${{ asientoDeTren.costo }}</span>
       </div>
     </div>
   </div>
@@ -39,26 +40,40 @@ export default {
     return {
       showAsientos: true,
       showForm: false,
-      seleccionado:null,
+      seleccionado: null,
       cliente: "",
     };
   },
+  mounted() {
+    let compras = JSON.parse(localStorage.getItem("historialasiento"));
+    if (compras != null) {
+      try {
+        this.setVenta(compras);
+      } catch (e) {
+        localStorage.removeItem("historialasiento");
+      }
+    }
+  },
   computed: {
-    ...mapState(["asientosDeTren", "totalDeVentas"]),
+    ...mapState(["asientosDeTren", "totalDeVentas", "historicoVentas"]),
   },
   methods: {
     guardarDatos() {
       this.metodoShowAsientos(this.seleccionado);
-      this.registrarVenta({ id: this.seleccionado, cliente: this.cliente});
+      this.registrarVenta({ id: this.seleccionado, cliente: this.cliente });
+      localStorage.setItem(
+        "historialasiento",
+        JSON.stringify(this.asientosDeTren)
+      );
     },
     metodoShowAsientos(id) {
-      this.seleccionado = id
+      this.seleccionado = id;
       this.showAsientos
         ? (this.showAsientos = false)
         : (this.showAsientos = true);
       this.showForm ? (this.showForm = false) : (this.showForm = true);
     },
-    ...mapMutations(["iniAsientosDeTren", "registrarVenta"]),
+    ...mapMutations(["iniAsientosDeTren", "registrarVenta", "setVenta"]),
   },
 };
 </script>
